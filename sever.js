@@ -6,11 +6,7 @@ import connect from "./src/config/connextdb.js";
 var cookieParser = require("cookie-parser");
 require("dotenv").config();
 import cors from "cors";
-// app.use(
-//   cors({
-//     origin: true,
-//   })
-// );
+
 app.use(cookieParser());
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
@@ -22,12 +18,10 @@ app.use((req, res, next) => {
   );
   next();
 });
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(bodyParser.json())
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-// Route handler để get cookie
 app.get("/user", (req, res) => {
   const accessToken = req.cookies;
   console.log(accessToken);
